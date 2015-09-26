@@ -17,8 +17,7 @@ class ListingsController < ApplicationController
 
   # GET /listings/new
  def new
-    @order = Order.new
-    @listing = Listing.find(params[:listing_id])
+    @listing = Listing.new
   end
 
   # GET /listings/1/edit
@@ -28,10 +27,9 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @order = Order.new(order_params)
-    @listing = Listing.find(params[:listing_id])
 
-    @order.buyer_id = current_user.id
+    @listing = Listing.new(listing_params)
+    @listing.user_id = current_user.id
 
     respond_to do |format|
       if @listing.save
