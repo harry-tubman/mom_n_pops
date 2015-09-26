@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  #qfp: should buyers and sellers be able to update orders?
+
   # GET /orders
   # GET /orders.json
   def index
