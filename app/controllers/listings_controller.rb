@@ -65,6 +65,11 @@ class ListingsController < ApplicationController
     end
   end
 
+  def seller
+    @listings = Listing.where(user: current_user)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
