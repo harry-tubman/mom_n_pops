@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927190335) do
+ActiveRecord::Schema.define(version: 20150929043828) do
 
   create_table "listings", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150927190335) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
+    t.string   "designation"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150927190335) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.string   "recipient"
+    t.string   "designation"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

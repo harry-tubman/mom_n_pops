@@ -32,16 +32,15 @@ class ListingsController < ApplicationController
     @listing.user_id = current_user.id
     
     if current_user.recipient.blank?
-    
       Stripe.api_key = ENV["STRIPE_API_KEY"]
       token = params[:stripeToken]
-       
+
       recipient = Stripe::Recipient.create(
-         :name => current_user.name,
-         :type => "individual",
-         :bank_account => token)
-      
-      
+        :name => current_user.name,
+        :type => "individual",
+        :bank_account => token
+        )
+
       current_user.recipient = recipient.id
       current_user.save
     end
@@ -94,7 +93,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image)
+      params.require(:listing).permit(:name, :description, :price, :image, :designation)
     end
     
     def check_user

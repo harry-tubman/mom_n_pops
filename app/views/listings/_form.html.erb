@@ -35,6 +35,27 @@
     <%= f.file_field :image, class: "form-control" %>
   </div>
   
+     <div class="form-group">
+  <%= f.label "Select Listing type:", :class=>"control-label input-group" %>
+      <div class="btn-group" data-toggle="buttons">
+         <label class="btn btn-default active">
+        <%= f.radio_button :designation, "General Donation" %>General Donation
+        </label>
+        <label class="btn btn-default">
+          <%= f.radio_button :designation, "Program Donation" %> Program Donation
+        </label>
+        <label class="btn btn-default">
+        <%= f.radio_button :designation, "Campaign Donation" %> Campaign Donation
+        </label>
+        <label class="btn btn-default">
+        <%= f.radio_button :designation, "Product for Sale" %>Product for Sale
+        </label>
+        <label class="btn btn-default">
+        <%= f.radio_button :designation, " Gift Card/Coupon" %> Gift Card/Coupon
+        </label>
+      </div>
+    </div>
+  
   <% if current_user.recipient.blank? %>  
     <br>
     <h1>Bank Account Information</h1>
@@ -51,10 +72,12 @@
       <%= label_tag :account_number %>
       <%= text_field_tag :account_number, nil, { :name => nil, :'data-stripe' => "accountNumber", class: "form-control" } %>
     </div>
-    
-    <div class="form-group">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
+  
   
   <% end %>  
+  
+  <div class="form-group">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+    
 <% end %>

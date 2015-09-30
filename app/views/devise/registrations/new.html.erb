@@ -22,6 +22,25 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
+  
+  
+   <div class="form-group">
+  <%= f.label "Select Account type:", :class=>"control-label input-group" %>
+      <div class="btn-group" data-toggle="buttons">
+         <label class="btn btn-default active">
+        <%= f.radio_button :designation, "Community Member" %>Community Member/Shopper
+        </label>
+        <label class="btn btn-default">
+          <%= f.radio_button :designation, "Community Organization" %> Community Organization/Non-Profit
+        </label>
+        <label class="btn btn-default">
+        <%= f.radio_button :designation, "Small Business" %>Small Business
+        </label>
+        <label class="btn btn-default">
+        <%= f.radio_button :designation, "Independent Vendor" %>Independent Vendor
+        </label>
+      </div>
+    </div>
 
   <div class="form-group">
     <%= f.submit "Sign up", class: "btn btn-primary" %>
