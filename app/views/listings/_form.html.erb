@@ -52,8 +52,13 @@
         </label>
         <label class="btn btn-default">
         <%= f.radio_button :designation, " Gift Card/Coupon" %> Gift Card/Coupon
-        </label>
+        </label><br/><br/>
       </div>
+      
+      <div class="form-group">
+        <%= f.label "Lisiting Tags" %><br/>
+        <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
+      </div> 
     </div>
   
   <% if current_user.recipient.blank? %>  
