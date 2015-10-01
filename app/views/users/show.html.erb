@@ -1,0 +1,10 @@
+<h1><%= @user.name %> </h1>
+<p><%= image_tag @user.avatar.url(:medium) %></p>
+<h2><%= @user.designation %><h2>
+<p><b> Tags: </b><%= raw @user.all_tags %></p>
+<p><b> Address: </b><%= @user.street_address %></p>
+<p><%= @user.city %>, <%= @user.state %>, <%= @user.zip %></p>
+<p><b> Phone: </b><%= @user.phone %></p>
+<p><b> Website: </b><%= @user.website %></p>
+<h3> More Info:</h3>
+<p><%= @user.info %></p>

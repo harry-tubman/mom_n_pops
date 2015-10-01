@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
   
   has_many :taggings
   has_many :tags, through: :taggings
-  
+  has_one  :profile, dependent: :destroy
+  has_attached_file :avatar, :styles => { :medium => "200x", :thumb => "100x100>" }, :default_url => "default.jpg"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   def all_tags=(names)
     self.tags = names.split(",").map do |name|
         Tag.where(name: name.strip).first_or_create!

@@ -13,5 +13,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :designation
     devise_parameter_sanitizer.for(:account_update) << :designation
     devise_parameter_sanitizer.for(:account_update) << :all_tags
+    devise_parameter_sanitizer.for(:account_update) << :street_address
+    devise_parameter_sanitizer.for(:account_update) << :city
+    devise_parameter_sanitizer.for(:account_update) << :state
+    devise_parameter_sanitizer.for(:account_update) << :zip
+    devise_parameter_sanitizer.for(:account_update) << :website
+    devise_parameter_sanitizer.for(:account_update) << :phone
+    devise_parameter_sanitizer.for(:account_update) << :info
+    devise_parameter_sanitizer.for(:account_update) << :avatar
   end
 end
