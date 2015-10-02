@@ -1,3 +1,5 @@
+<div class="row">
+  <div class="col-md-3">
 <h1><%= @user.name %> </h1>
 <p><%= image_tag @user.avatar.url(:medium) %></p>
 <h2><%= @user.designation %><h2>
@@ -6,5 +8,63 @@
 <p><%= @user.city %>, <%= @user.state %>, <%= @user.zip %></p>
 <p><b> Phone: </b><%= @user.phone %></p>
 <p><b> Website: </b><%= @user.website %></p>
-<h3> More Info:</h3>
+<p><b> More Info:</b></p>
 <p><%= @user.info %></p>
+  </div>
+  
+    <div class="col-md-9">
+          
+      <% if @user.designation == "Independent Vendor" %>
+      
+            <h2>Products for Sale</h2>
+             <% @listings.each do |listing| %>
+                <div class="col-md-6">
+                  <div class="thumbnail">
+                    <%= link_to image_tag(listing.image.url), listing %>
+                    <div class="caption">
+                      <h3><%= listing.name %></h3>
+                      <p><%= number_to_currency(listing.price) %></p>
+                      <p> <%= raw listing.all_tags %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+    
+      
+      <% elsif @user.designation == "Community Organization" %>
+       
+        <h2>Causes: </h2>
+             <% @listings.each do |listing| %>
+                <div class="col-md-6">
+                  <div class="thumbnail">
+                    <%= link_to image_tag(listing.image.url), listing %>
+                    <div class="caption">
+                      <h3><%= listing.name %></h3>
+                      <p><%= number_to_currency(listing.price) %></p>
+                      <p> <%= raw listing.all_tags %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+     
+      <% else %>
+      
+           <h2>Local Businesses and Causes Supported: </h2>
+             <% @orders.each do |order| %>
+                <div class="col-md-6">
+                  <div class="thumbnail">
+                    <%= link_to image_tag(order.listing.image.url), order.listing %>
+                    <div class="caption">
+                      <h3><%= order.listing.name %></h3>
+                      <p><%= number_to_currency(order.listing.price) %></p>
+                      <p><%= link_to "from #{order.seller.name}", order.seller %></li><%=  %></p>
+                      <p> <%= raw order.listing.all_tags %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+        
+      <% end %>
+    
+  </div>
+</div>
