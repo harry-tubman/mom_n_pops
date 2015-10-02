@@ -1,16 +1,29 @@
 <div class="row">
-  <div class="col-md-3">
-<h1><%= @user.name %> </h1>
-<p><%= image_tag @user.avatar.url(:medium) %></p>
-<h2><%= @user.designation %><h2>
-<p><b> Tags: </b><%= raw @user.all_tags %></p>
-<p><b> Address: </b><%= @user.street_address %></p>
-<p><%= @user.city %>, <%= @user.state %>, <%= @user.zip %></p>
-<p><b> Phone: </b><%= @user.phone %></p>
-<p><b> Website: </b><%= @user.website %></p>
-<p><b> More Info:</b></p>
-<p><%= @user.info %></p>
-  </div>
+  
+    <div class="col-md-3">
+  
+  
+      <h1><%= @user.name %> </h1>
+      <p><%= image_tag @user.avatar.url(:medium) %></p>
+      <h2><%= @user.designation %><h2>
+        
+      <% if @user.info.blank? && @user == current_user %>
+  
+        <%= link_to "Edit Your Profile", edit_user_registration_path(current_user), class: "btn btn-primary" %>
+
+        <% else %>
+        
+            <p><b> Tags: </b><%= raw @user.all_tags %></p>
+            <p><b> Address: </b><%= @user.street_address %></p>
+            <p><%= @user.city %>, <%= @user.state %>, <%= @user.zip %></p>
+            <p><b> Phone: </b><%= @user.phone %></p>
+            <p><b> Website: </b><%= @user.website %></p>
+            <p><b> More Info:</b></p>
+            <p><%= @user.info %></p>
+         <% end %>
+    </div>
+  
+
   
     <div class="col-md-9">
           
@@ -64,6 +77,10 @@
                 </div>
               <% end %>
         
+      <% end %>
+      
+      <% if @user == current_user %>
+          <%= link_to 'New Listing', new_listing_path, class: "btn btn-primary", data: { no_turbolink: true } %>
       <% end %>
     
   </div>

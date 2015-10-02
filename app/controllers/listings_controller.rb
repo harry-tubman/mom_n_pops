@@ -7,7 +7,8 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
+     @listings = Listing.where(:designation => ["Gift Card/Coupon", "Product for Sale"])
+     @causes = Listing.where(:designation => ["General Donation", "Campaign Donation", "Program Donation"])
   end
 
   # GET /listings/1
