@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001231350) do
+ActiveRecord::Schema.define(version: 20151003030850) do
+
+  create_table "donorships", force: :cascade do |t|
+    t.integer  "donor_id"
+    t.integer  "donated_to_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "donorships", ["donated_to_id", "donor_id"], name: "index_donorships_on_donated_to_id_and_donor_id", unique: true
+  add_index "donorships", ["donated_to_id"], name: "index_donorships_on_donated_to_id"
+  add_index "donorships", ["donor_id"], name: "index_donorships_on_donor_id"
 
   create_table "listings", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +47,11 @@ ActiveRecord::Schema.define(version: 20151001231350) do
     t.integer  "listing_id"
     t.integer  "buyer_id"
     t.integer  "seller_id"
+  end
+
+  create_table "sponsorships", force: :cascade do |t|
+    t.integer "sponsor_id"
+    t.integer "sponsored_id"
   end
 
   create_table "taggings", force: :cascade do |t|

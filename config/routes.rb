@@ -9,15 +9,21 @@ Rails.application.routes.draw do
     resources :orders
   end
   
+  resources :donorships, only: [:create, :destroy]
+  
   get 'pages/about'
 
   get 'pages/contact'
   
   get 'seller' => "listings#seller"
   
+  get 'choose' => "users#choose"
+  
   get 'sales' => "orders#sales"
   
   get 'purchases' => "orders#purchases"
+  
+  
   
   root 'listings#index'
 

@@ -1,6 +1,33 @@
+<% if current_user.donating_to.blank? %>
+ <div class="row">
+
+      
+       <p><%= form_for(current_user.active_donorships.build) do |f| %>
+            <div><%= hidden_field_tag :donated_to_id, @user.id %></div>
+            <%= f.submit "Support this organization with your purchases", class: "btn btn-primary" %>
+          <% end %></p>
+   
+ </div>
+
+<% end %>
+
+<% if current_user.donating_to?(@user) %>
+ <div class="row">
+
+      
+       <p><%= form_for(current_user.active_donorships.find_by(donated_to_id: @user.id),
+             html: { method: :delete }) do |f| %>
+            <%= f.submit "Remove your support and chose another organization", class: "btn btn-warning" %>
+          <% end %></p>
+   
+ </div>
+
+<% end %>
+
 <div class="row">
   
     <div class="col-md-3">
+      
   
   
       <h1><%= @user.name %> </h1>

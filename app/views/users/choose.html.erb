@@ -1,0 +1,48 @@
+<div class="center">
+  <h2>Choose a Non-Profit to Support</h2>
+</div>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th class="center">Logo</th>
+    <th class="center">Name</th>
+    <th class="center">Tags</th>
+    <th class="center">Description</th>
+    <th class="center">Action</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td class="center"><%= image_tag user.avatar.url(:thumb) %></td>
+      <td class="center"><%= user.name %></td>
+      <td class="center"><%= raw user.all_tags %></td>
+      <td class="center"><%= user.info %></td>
+      <td class="center"><p><%= link_to "More info", user, class: "btn btn-info" %></p>
+      
+<% if current_user.donating_to?(user) %>
+
+
+<p><%= form_for(current_user.active_donorships.find_by(donated_to_id: user.id),
+             html: { method: :delete }) do |f| %>
+            <%= f.submit "Remove your support and chose another organization", class: "btn btn-warning" %>
+          <% end %></p>
+
+<% else %> 
+                        <p><%= form_for(current_user.active_donorships.build) do |f| %>
+                        <div><%= hidden_field_tag :donated_to_id, user.id %></div>
+      <%= f.submit "Support this organization with your shopping", class: "btn btn-primary" %>
+      <% end %></p>
+
+<% end %>
+
+
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+
+<% if user_signed_in? %>
+ <%= link_to 'New Listing', new_listing_path, class: "btn btn-link", data: { no_turbolink: true } %>
+<% end %>
