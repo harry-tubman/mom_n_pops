@@ -16,13 +16,13 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => "200x", :thumb => "100x100>", :tiny => "50x50>"  }, :default_url => "default.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
-  has_many :active_donorships, class_name:  "Donorship",
+  has_one :active_donorship, class_name:  "Donorship",
                                   foreign_key: "donor_id",
                                   dependent:   :destroy
   has_many :passive_donorships, class_name:  "Donorship",
                                    foreign_key: "donated_to_id",
                                    dependent:   :destroy
-  has_many :donating_to, through: :active_donorships, source: :donated_to
+  has_one :donating_to, through: :active_donorship, source: :donated_to
   has_many :donors, through: :passive_donorships, source: :donor
   
   

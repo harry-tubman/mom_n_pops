@@ -52,9 +52,15 @@ class OrdersController < ApplicationController
     end
     
     transfer = Stripe::Transfer.create(
-      :amount => (@listing.price * 95).floor,
+      :amount => (@listing.price * 90).floor,
       :currency => "usd",
       :recipient => @seller.recipient
+      )
+      
+      transfer = Stripe::Transfer.create(
+      :amount => (@listing.price * 5).floor,
+      :currency => "usd",
+      :recipient =>  current_user.donating_to.recipient
       )
 
 

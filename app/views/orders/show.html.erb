@@ -1,19 +1,55 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="thumbnail">
+      <%= image_tag @order.listing.image.url %>
+    </div>
+  </div>
+  
+  
+  <div class="col-md-6">  
+    <p>
+      <strong>Seller:</strong>
+      <%= @order.seller.name %>
+    </p>
+    
+    
+    <p>
+      <strong>Organization Supported:</strong>
+      <%= @order.buyer.donating_to.name %>
+    </p>
+    
+    <p>
+      <strong>Purchased:</strong>
+      <%= @order.listing.name %>
+    </p>
+    
+    <p>
+      <strong>Description:</strong>
+      <%= @order.listing.description %>
+    </p>
+    
+    <p>
+      <strong>Customer:</strong>
+      <%= @order.buyer.name %>
+    </p>
+    
+    <p>
+      <strong>Address:</strong>
+      <%= @order.address %>
+    </p>
+    
+    <p>
+      <strong>City:</strong>
+      <%= @order.city %>
+    </p>
+    
+    <p>
+      <strong>State:</strong>
+      <%= @order.state %>
+    </p>
+  </div>
+</div>
 
-
-<p>
-  <strong>Address:</strong>
-  <%= @order.address %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @order.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @order.state %>
-</p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
