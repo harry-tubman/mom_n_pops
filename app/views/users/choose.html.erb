@@ -22,16 +22,16 @@
 <% if current_user.donating_to?(user) %>
 
 
-<p><%= form_for(current_user.active_donorships.find_by(donated_to_id: user.id),
+ <p><%= form_for(Donorship.find_by(donor_id: current_user.id),
              html: { method: :delete }) do |f| %>
             <%= f.submit "Remove your support and chose another organization", class: "btn btn-warning" %>
           <% end %></p>
 
 <% else %> 
-                        <p><%= form_for(current_user.active_donorships.build) do |f| %>
-                        <div><%= hidden_field_tag :donated_to_id, user.id %></div>
-      <%= f.submit "Support this organization with your shopping", class: "btn btn-primary" %>
-      <% end %></p>
+                      <p><%= form_for(current_user.create_active_donorship) do |f| %>
+            <div><%= hidden_field_tag :donated_to_id, user.id %></div>
+            <%= f.submit "Support this organization with your purchases", class: "btn btn-primary" %>
+          <% end %></p>
 
 <% end %>
 

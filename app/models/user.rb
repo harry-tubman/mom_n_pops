@@ -25,20 +25,19 @@ class User < ActiveRecord::Base
   has_one :donating_to, through: :active_donorship, source: :donated_to
   has_many :donors, through: :passive_donorships, source: :donor
   
-  
    # Chooses a non-profit to donate to.
   def donate_to(other_user)
-    active_donorships.create(donated_to_id: other_user.id)
+    self.create_active_donorship(donated_to_id: other_user.id)
   end
 
   # Ends donor relationship with a non-profit.
   def end_donorship_With(other_user)
-    active_donorships.find_by(donated_to_id: other_user.id).destroy
+    self.active_donorship.destroy
   end
 
   # Returns true if the current user is donating to the other user.
   def donating_to?(other_user)
-    donating_to.include?(other_user)
+    return true if self.donating_to == (other_user)
   end
   
   
