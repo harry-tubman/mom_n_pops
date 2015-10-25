@@ -49,11 +49,6 @@ ActiveRecord::Schema.define(version: 20151003030850) do
     t.integer  "seller_id"
   end
 
-  create_table "sponsorships", force: :cascade do |t|
-    t.integer "sponsor_id"
-    t.integer "sponsored_id"
-  end
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "listing_id"
