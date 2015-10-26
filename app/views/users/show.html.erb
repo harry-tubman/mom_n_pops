@@ -87,10 +87,8 @@
         edit_user_registration_path(current_user), class: "btn btn-info" %></li>
         <li>  <%= link_to "Add Media", 
         edit_user_registration_path(current_user), class: "btn btn-info" %></li>
-        <li>  <%= link_to "Add Bank Information", 
-        edit_user_registration_path(current_user), class: "btn btn-info" %></li>
-        <li>  <%= link_to "List atleast one program", 
-        edit_user_registration_path(current_user), class: "btn btn-info" %></li>
+        <li>  <%= link_to "Add Bank Information", bank_path, class: "btn btn-info", data: { no_turbolink: true } %></li>
+        <li>  <%= link_to "List atleast one program",new_listing_path, class: "btn btn-info", data: { no_turbolink: true }  %></li>
         <br>
         <%= link_to "Activate your account!", 
         edit_user_registration_path(current_user), class: "btn btn-success" %>
@@ -101,6 +99,19 @@
         <h2> Info </h2>
         <p><%= @user.info %></p>
         <h2> Programs</h2>
+        
+        <% @listings.each do |listing| %>
+                <div class="col-md-6">
+                  <div class="thumbnail">
+                    <%= link_to image_tag(listing.image.url), listing %>
+                    <div class="caption">
+                      <h3><%= listing.name %></h3>
+                      <p>Suggested Donation Minimum: <%= number_to_currency(listing.price) %></p>
+                      <p> <%= raw listing.all_tags %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
         
      
       <% else %>

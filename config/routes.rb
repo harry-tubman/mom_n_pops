@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   
   get 'choose' => "users#choose"
   
+  get 'bank' => "users#bank"
+  
   get 'sales' => "orders#sales"
   
   get 'purchases' => "orders#purchases"

@@ -5,10 +5,15 @@
     </div>
   </div>
   <div class="col-md-6">
+   
     <h3><%= @listing.name %></h3>
-     <p><%= link_to "by  #{@listing.user.name}", @listing.user %> 
-    <p>A <%= @listing.user.designation %><p>
-      
+    
+     <% if @listing.user.profile_name.blank? %>
+     <p><%= link_to "by  #{@listing.user.first_name}", @listing.user %> </p>
+     <% else %>
+      <p><%= link_to "by  #{@listing.user.profile_name}", @listing.user %> </p>
+      <% end %>
+    <p><%= @listing.user.designation %><p>
     <% if @listing.user.designation == "Community Organization"%></p>
      <p><b>Suggested Minimum Donation: </b> <%= number_to_currency(@listing.price) %></p>
     <% else %>

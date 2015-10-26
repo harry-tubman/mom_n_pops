@@ -30,7 +30,7 @@
           <div class="caption">
             <h2><%= listing.name %></h2>
             <p><b>Suggested Donation: </b><%= number_to_currency(listing.price) %></p>
-            <p><b>By:</b><%= link_to "#{listing.user.name}", listing.user %></li></p>
+            <p><b>By:</b><%= link_to "#{listing.user.profile_name}", listing.user %></li></p>
             <p><b>Tags:</b> <%= raw listing.all_tags %></p>
             <br></br>
             <p><%= link_to "See more", listing, class: "btn btn-primary" %></li><%=  %></p>
